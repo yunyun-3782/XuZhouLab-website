@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCW 2025 Summer Game Jam 参赛战队 | 虚舟实验室</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <meta name="description" content="虚舟实验室(XuZhou Lab)是一支CCW 2025 Summer GameJam的青少年参赛团队，快来围观！">
+    <meta name="keywords" content="虚舟实验室,虚舟,虚舟实验工作室,虚舟工作室,虚舟游戏,虚舟编程,虚舟代码,
+        xuzhoulab,xuzhoustudio,xuzhoucode,xuzhougame,xuzhoulabstudio,xuzhougzs,
+        xzlab,xzgzs,xzstudio,xzstu,,xzsys,xuzhousys果园工作室,果园编程,果园游戏,果园代码,
+        guoyuan,guoyuancode,guoyuanstudio,gystu,guoyuanstu,gycode,
+        果园工作室合作团队,青少年编程团队,scratch,scratch游戏开发,青少年工作室,
+        编程团队,青少年创意游戏作品,青少年编程,少儿编程团队,scratch聚集地,ccw,
+        共创世界,小码王,xiaomawang,scratch中社,中社,scratch-cn,gamejam,
+        ccwgamejam,gandi,小码王社区,学生游戏设计,学生开发团队,
+        开发团队,少儿开发团队,青少年开发游戏,学生开发游戏">
+    <meta charset="UTF-8">
+    <meta property="og:title" content="虚舟实验室">
+    
+    
+    <style>
+        :root {
+            --primary-color: #00f0ff;
+            --secondary-color: #ff00e6;
+            --accent-color: #ffd700;
+            --dark-bg: #0a0a1a;
+            --darker-bg: #050510;
+            --card-bg: rgba(20, 20, 40, 0.8);
+            --text-color: #e0e0ff;
+            --text-secondary: #a0a0c0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: var(--dark-bg);
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 240, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(255, 0, 230, 0.1) 0%, transparent 20%),
+                linear-gradient(to bottom, var(--darker-bg), var(--dark-bg));
+            color: var(--text-color);
+            font-family: 'Exo 2', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        /* 头部导航 */
+        .cyber-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 30, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .nav-logo .logo-icon {
+            color: var(--primary-color);
+            font-size: 28px;
+            animation: pulse 2s infinite;
+        }
+        
+        .nav-logo .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 18px;
+            position: relative;
+            padding: 8px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* 主内容区 */
+        .cyber-container {
+            max-width: 1200px;
+            margin: 120px auto 60px;
+            padding: 0 20px;
+        }
+        
+        /* 标题区 */
+        .cyber-header {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+            padding: 40px 0;
+        }
+        
+        .cyber-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+        }
+        
+        .cyber-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .cyber-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+        
+        .cyber-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .grid-item {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 8px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .grid-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
+            border-color: var(--primary-color);
+        }
+        
+        .grid-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary-color);
+            opacity: 0.3;
+        }
+        
+        .data-number {
+            display: block;
+            font-size: 3rem;
+            font-weight: bold;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+            margin-bottom: 10px;
+        }
+        
+        .data-label {
+            display: block;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+        
+        /* 战队信息区 */
+        .team-section {
+            margin: 60px 0;
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+        
+        .team-info {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(5px);
+            position: relative;
+        }
+        
+        .team-info h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .team-info p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .team-info .highlight {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+        
+        .gamejam-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 0, 230, 0.2);
+            border: 1px solid var(--secondary-color);
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        
+        /* 成员卡片 */
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .member-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
+            border-color: var(--primary-color);
+        }
+        
+        .member-header {
+            padding: 25px 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+        }
+        
+        .member-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+        
+        .member-role {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        .member-body {
+            padding: 25px 20px;
+        }
+        
+        .member-skills {
+            margin-top: 15px;
+        }
+        
+        .skill-tag {
+            display: inline-block;
+            background: rgba(0, 240, 255, 0.1);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            padding: 3px 10px;
+            margin: 5px 5px 5px 0;
+            font-size: 0.9rem;
+        }
+        
+        /* 游戏信息 */
+        .game-info {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 60px 0;
+            backdrop-filter: blur(5px);
+        }
+        
+        .game-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+        
+        .game-status {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            border-radius: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .game-desc {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        
+        .game-link {
+            display: inline-block;
+            padding: 12px 30px;
+            background: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .game-link:hover {
+            background: rgba(0, 240, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        /* 页脚 */
+        .cyber-footer {
+            margin-top: 80px;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(0, 240, 255, 0.2);
+        }
+        
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        
+        /* 动画效果 */
+        @keyframes pulse {
+            0% { text-shadow: 0 0 5px rgba(0, 240, 255, 0.7); }
+            50% { text-shadow: 0 0 20px rgba(0, 240, 255, 0.9); }
+            100% { text-shadow: 0 0 5px rgba(0, 240, 255, 0.7); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .cyber-nav {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .cyber-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cyber-subtitle {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="cyber-nav">
+        <div class="nav-logo">
+            <i class="fas fa-ship logo-icon floating"></i>
+            <div class="logo-text">虚舟实验室</div>
+        </div>
+        <div class="nav-links">
+            <a href="#team">战队信息</a>
+            <a href="#members">团队成员</a>
+            <a href="#game">游戏项目</a>
+            <a href="https://xuzhoulab.cn">返回主站</a>
+        </div>
+    </nav>
+    
+    <!-- 主内容区 -->
+    <div class="cyber-container">
+        <!-- 标题区 -->
+        <header class="cyber-header">
+            <h1>CCW 2025 SUMMER GAME JAM</h1>
+            <p class="cyber-subtitle">在代码与剧情的激流中，造梦前行</p>
+            
+            <div class="cyber-grid">
+                <div class="grid-item">
+                    <span class="data-number">14</span>
+                    <span class="data-label">极限开发天数</span>
+                </div>
+                <div class="grid-item">
+                    <span class="data-number">3</span>
+                    <span class="data-label">核心成员</span>
+                </div>
+                <div class="grid-item">
+                    <span class="data-number">100</span>
+                    <span class="data-label">热情投入</span>
+                </div>
+                <div class="grid-item">
+                    <span class="data-number">114514</span>
+                    <span class="data-label">剧情游戏</span>
+                </div>
+            </div>
+        </header>
+        
+        
+        <!-- 战队信息 -->
+        <section id="team" class="team-section">
+            <h2 class="section-title">战队信息</h2>
+            
+            <div class="team-info">
+                <span class="gamejam-badge">CCW 2025 Summer Game Jam 参赛战队</span>
+                <h3>虚舟实验室 (Xuzhou Lab)</h3>
+                <p>虚舟实验室是一支专注于叙事游戏的开发团队，隶属于自建工作室。我们以"<span class="highlight">在代码与剧情的激流中造梦前行</span>"为理念，致力于在极限时间内打造情感丰沛、引人入胜的游戏体验。</p>
+                <p>在CCW Game Jam的<span class="highlight">14天极限挑战</span>中，我们如轻舟般灵活应对开发激流，无惧试错实验。</p>
+                <p>我们的目标是交付<span class="highlight">完成度高</span>的剧情游戏原型。</p>
+                <p>"虚舟"寓意着在未知的数字海洋中自由探索、无惧风浪的勇气。实验室则代表着我们的探索精神、实验态度和对创新的不懈追求。</p>
+                <p>
+我们专注：
+在极限时间内，用游戏引擎与代码构建有情感深度、沉浸感强的剧情体验。无论是微观情感、宏大命题、悬疑脉络或治愈旅程，故事驱动是我们的创作基因。
+
+“虚舟”精神：
+以轻舟之姿灵活应对开发激流，专注核心叙事创新，无惧试错实验。
+
+参赛目标：
+于14天极限期内，交付一款完成度高、叙事自洽、情感共鸣的剧情游戏原型。
+
+官网：25sgj.xuzhoulab.cn
+—— 代码为桨，剧情为帆，极限造梦。——</p>
+            </div>
+        </section>
+        
+        <!-- 团队成员 -->
+        <section id="members" class="team-section">
+            <h2 class="section-title">团队成员</h2>
+            
+            <div class="members-grid">
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-name">云云</div>
+                    </div>
+                    <div class="member-body">
+                        <p>虚舟实验室创屎人，非常希望用虚舟炸掉实验室（不用比赛啦bushi）</p>
+                        <div class="member-skills">
+                            <span class="skill-tag">程序</span>
+                            <span class="skill-tag">美术</span>
+                            <span class="skill-tag">逻辑</span>
+                            <span class="skill-tag">测试打磨</span>
+                            <span class="skill-tag">摸鱼</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-name">MC回报</div>
+                    </div>
+                    <div class="member-body">
+                        <p>最佳摸鱼奖</p>
+                        <div class="member-skills">
+                            <span class="skill-tag">策划</span>
+                            <span class="skill-tag">美术</span>
+                            <span class="skill-tag">程序</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-name">刚果英雄</div>
+                    </div>
+                    <div class="member-body">
+                        <p>技术多面手，确保游戏体验流畅自然。</p>
+                        <div class="member-skills">
+                            <span class="skill-tag">测试打磨</span>
+                            <span class="skill-tag">史山制造者</span>
+                            <span class="skill-tag">音效</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-name">派大星</div>
+                    </div>
+                    <div class="member-body">
+                        <p>这个人很懒，没有写个性签名。注：职位为ta本人自行填写，乱填的可不关我们事666</p>
+                        <div class="member-skills">
+                            <span class="skill-tag">神金美术</span>
+                            <span class="skill-tag">史山制造者</span>
+                            <span class="skill-tag">逆天代码</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        <!-- 游戏信息 -->
+        <section id="game" class="team-section">
+            <h2 class="section-title">游戏项目</h2>
+            
+            <div class="game-info">
+                <div class="game-title">《第五天的庆祝》</div>
+                <span class="game-status">主题已公布，正开发中</span>
+                
+                <p class="game-desc">1145141919810</p>
+                
+                <p class="game-desc">我说我们很快就做好了你信吗</p>
+                
+                <a href="https://www.ccw.site/gamejam/teamDetail?activityId=1751608032192&id=11565" class="game-link" target="_blank">
+                    <i class="fas fa-globe-asia"></i> 访问我们的战队
+                </a>
+            </div>
+        </section>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer class="cyber-footer">
+        <div class="footer-logo">虚舟实验室</div>
+        <div class="footer-links">
+            <a href="https://xuzhoulab.cn" target="_blank">主站</a>
+            <a href="https://www.ccw.site/gamejam/teamDetail?activityId=1751608032192&id=11565" target="_blank">CCW平台</a>
+            <a href="https://post.xuzhoulab.cn" target="_blank">博客</a>
+            <a href="https://space.bilibili.com/1199120693" target="_blank">Bilibili</a>
+        </div>
+        <div class="copyright">
+            © 2025 虚舟实验室 | 探未来之境 · 载无界新生
+        </div>
+    </footer>
+    
+    <script>
+        // 滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 观察器用于动画元素
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            // 为所有部分添加观察
+            document.querySelectorAll('.team-section, .cyber-header, .game-info').forEach(section => {
+                observer.observe(section);
+            });
+            
+            // 动态数字效果
+            const counters = document.querySelectorAll('.data-number');
+            counters.forEach(counter => {
+                const target = +counter.innerText;
+                let count = 0;
+                const duration = 2000; // 动画持续时间
+                const increment = target / (duration / 16); // 每16ms增加的值
+                
+                const updateCount = () => {
+                    if (count < target) {
+                        count += increment;
+                        counter.innerText = Math.ceil(count);
+                        setTimeout(updateCount, 16);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                
+                setTimeout(updateCount, 500);
+            });
+        });
+    </script>
+</body>
+</html>

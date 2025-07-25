@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>XuZhou Lab｜虚舟实验室</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="static/css/styles.css">
+
+
+    <meta name="description" content="虚舟实验室(XuZhou Lab)是青少年编程创作团队，专注Scratch游戏开发与编程教学，加入我们的创作团队！">
+    <meta name="keywords" content="虚舟实验室,虚舟,虚舟实验工作室,虚舟工作室,虚舟游戏,虚舟编程,虚舟代码,
+        xuzhoulab,xuzhoustudio,xuzhoucode,xuzhougame,xuzhoulabstudio,xuzhougzs,
+        xzlab,xzgzs,xzstudio,xzstu,,xzsys,xuzhousys果园工作室,果园编程,果园游戏,果园代码,
+        guoyuan,guoyuancode,guoyuanstudio,gystu,guoyuanstu,gycode,
+        果园工作室合作团队,青少年编程团队,scratch,scratch游戏开发,青少年工作室,
+        编程团队,青少年创意游戏作品,青少年编程,少儿编程团队,scratch聚集地,ccw,
+        共创世界,小码王,xiaomawang,scratch中社,中社,scratch-cn,gamejam,
+        ccwgamejam,gandi,小码王社区,学生游戏设计,学生开发团队,
+        开发团队,少儿开发团队,青少年开发游戏,学生开发游戏">
+    <meta charset="UTF-8">
+    <meta property="og:title" content="虚舟实验室">
+    
+    <style>
+        /* 通知系统样式 */
+        .cyber-notification {
+            position: fixed;
+            top: 20px;
+            right: -100%;
+            background: rgba(10, 10, 30, 0.95);
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 15px 20px;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+            display: flex;
+            align-items: center;
+            max-width: 300px;
+            z-index: 1000;
+            transition: right 0.5s ease, opacity 0.5s ease;
+            opacity: 0;
+        }
+        
+        .cyber-notification.active {
+            right: 20px;
+            opacity: 1;
+        }
+        
+        .close-btn {
+            margin-left: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .close-btn:hover {
+            color: var(--primary-color);
+            transform: scale(1.2);
+        }
+        
+        /* 返回按钮样式 */
+        .back-to-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        
+        .back-to-home a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--primary-color);
+            border-radius: 50px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-home a:hover {
+            background: var(--primary-color);
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+        }
+        
+        /* 数字计数动画 */
+        .data-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+            transition: all 0.5s ease;
+            margin-bottom: 5px;
+        }
+        
+        .data-label {
+            display: block;
+            font-size: 1rem;
+            color: #ccc;
+        }
+        
+        .counting {
+            animation: pulse 0.5s ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* 网格项垂直排列 */
+        .grid-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        /* 产品展示区改进样式 */
+        .products-section {
+            margin: 40px 0;
+        }
+        
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .product-card {
+            width: 300px;
+            background: rgba(20, 20, 40, 0.8);
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
+        }
+        
+        .product-title {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--primary-color);
+            padding-bottom: 5px;
+        }
+        
+        .product-description {
+            color: #ccc;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .product-status {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .status-development {
+            background: rgba(255, 165, 0, 0.2);
+            color: orange;
+            border: 1px solid orange;
+        }
+        
+        .product-iframe-container {
+            width: 100%;
+            margin: 20px 0;
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <img src="https://w.saobby.com/w/beie0dt7">
+
+
+
+    <div class="cyber-container">
+        <!-- 全息导航栏 -->
+        <nav class="cyber-nav">
+            <div class="nav-logo">
+                <a href="https://xuzhoulab.cn/"></a>
+            </div>
+            <div class="nav-links">
+                <a href="https://post.xuzhoulab.cn/" class="cyber-link">小论坛</a>
+                <a href="https://stats.uptimerobot.com/QjOOqTCAT8" class="cyber-link" target="_blank">网站状态</a>
+            </div>
+        </nav>
+
+        <!-- 全息标题区 -->
+        <header class="cyber-header">
+            <h1>虚舟实验室</h1>
+            <p class="cyber-subtitle">探未来之境 · 载无界新生</p>
+            <div class="cyber-grid">
+                <div class="grid-item">
+                    <span class="data-number" data-target="7">7</span>
+                    <span class="data-label">团队成员</span>
+                </div>
+                <div class="grid-item">
+                    <span class="data-number" data-target="3">3</span>
+                    <span class="data-label">创新项目</span>
+                </div>
+                <div class="grid-item">
+                    <span class="data-number" data-target="100%">100%</span>
+                    <span class="data-label">热情投入</span>
+                </div>
+            </div>
+            <a href="/members.html" class="cyber-button">查看完整成员</a>
+        </header>
+
+
+        <section class="products-section">
+            <h2 class="section-title">我们的产品</h2>
+
+            <div class="product-container">
+
+                <div class="product-card">
+                    <h3 class="product-title">2025 Summer GameJam</h3>
+                    <span class="product-status status-development">开发中</span>
+                    <p class="product-description">当前进度：正在努力地参赛</p>
+                    <a href="/2025summergamejam.html" class="cyber-button small">前往康康</a>
+                </div>
+
+                <div class="product-card">
+                    <h3 class="product-title">卷王</h3>
+                    <span class="product-status status-development">开发中</span>
+                    <p class="product-description">智能推送数据</p>
+                    <a href="#" class="cyber-button small" target="_blank">未开放</a>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- 最新消息 -->
+        <section class="quick-links">
+            <h2 class="section-title">📚 最新消息</h2>
+             <div class="link-grid">
+                 <a href="https://post.xuzhoulab.cn/yunyun/146" class="link-card" target="_blank">
+                    <div class="link-text">SSH入侵事件说明</div>
+                    <div class="link-text">2025/07/25</div>
+                </a>
+                <a href="https://post.xuzhoulab.cn/yunyun/29" class="link-card" target="_blank">
+                    <div class="link-text">虚舟实验室招人啦！</div>
+                    <div class="link-text">2025/07/07</div>
+                </a>
+                <a href="https://post.xuzhoulab.cn/yunyun/10" class="link-card" target="_blank">
+                    <div class="link-text">虚舟实验室成立啦！</div>
+                    <div class="link-text">2025/07/05</div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 快速链接区 -->
+        <section class="quick-links">
+            <h2 class="section-title">🔗 快速访问</h2>
+            <div class="link-grid">
+                <a href="https://space.bilibili.com/1199120693" class="link-card" target="_blank">
+                    <div class="link-icon">📺</div>
+                    <div class="link-text">我们的B站</div>
+                </a>
+                <a href="https://stats.uptimerobot.com/QjOOqTCAT8" class="link-card" target="_blank">
+                    <div class="link-icon">📊</div>
+                    <div class="link-text">网站状态</div>
+                </a>
+                <a href="https://post.xuzhoulab.cn/" class="link-card" target="_blank">
+                    <div class="link-icon">📒</div>
+                    <div class="link-text">小论坛</div>
+                </a>
+                <a href="/packaged.html" class="link-card" target="_blank">
+                    <div class="link-icon">📦</div>
+                    <div class="link-text">Scratch打包器</div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- 热门文章 -->
+        <section class="quick-links">
+            <h2 class="section-title">🔥 热门文章</h2>
+             <div class="link-grid">
+                 <a href="https://post.xuzhoulab.cn/yunyun/76" class="link-card" target="_blank">
+                    <div class="link-text">欢迎使用CSense！</div>
+                    <div class="link-text">2025/07/17</div>
+                </a>
+            </div>
+        </section>
+
+
+
+
+        <!-- 页脚 -->
+        <footer class="cyber-footer">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>关于我们</h3>
+                    <p>虚舟实验室，专注于编程领域，致力于在CCW平台创作与发布优质作品。</p>
+                    <p>探未来之境 · 载无界新生</p>
+                </div>
+                <div class="footer-section">
+                    <h3>联系信息</h3>
+                    <p>云云 QQ 1159428885</p>
+                    <p>QQ群 801817798</p>
+                    <p>飞书 请先通过其它方式获得加入链接</p>
+                </div>
+               <div class="footer-section">
+                    <h3>友情链接</h3>
+                    <br>
+                    <a href="https://www.saobby.com/" style="color: white;" target="_blank">Saobby的主页</a><br>
+                    <a href="https://www.rainyun.com/xhlab_" style="color: white;" target="_blank">🌧️ 雨云提供计算服务</a><br>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+
+
+
+    <script src="./index_files/cdn.js.下载"></script>
+    <script>
+        // 通知系统功能
+        let notificationTimer;
+        
+        function showNotification() {
+            const notification = document.getElementById('notification');
+            clearTimeout(notificationTimer);
+            
+            notification.classList.add('active');
+            notificationTimer = setTimeout(() => {
+                closeNotification();
+            }, 4000);
+        }
+        
+        function closeNotification() {
+            const notification = document.getElementById('notification');
+            notification.classList.remove('active');
+        }
+        
+        // 数字计数动画
+        function animateCounters() {
+            const counters = document.querySelectorAll('.data-number');
+            const speed = 1000; // 动画速度，数值越小越快
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const count = parseInt(counter.innerText);
+                const increment = Math.ceil(target / speed);
+                
+                const updateCount = () => {
+                    const currentCount = parseInt(counter.innerText);
+                    
+                    if(currentCount < target) {
+                        counter.innerText = Math.min(currentCount + increment, target);
+                        counter.classList.add('counting');
+                        setTimeout(updateCount, 1);
+                    } else {
+                        counter.classList.remove('counting');
+                    }
+                };
+                
+                updateCount();
+            });
+        }
+        
+        // 页面加载
+        document.addEventListener('DOMContentLoaded', function() {
+            showNotification();
+            
+            // 数字计数动画
+            setTimeout(animateCounters, 100);
+        });
+    </script>
+
+</body></html>

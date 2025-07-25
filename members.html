@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>XuZhou Lab｜虚舟实验室</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+    
+    <meta name="description" content="这里是虚舟实验室(XuZhouLab)的成员列表，我们期待您的加入！">
+    <meta name="keywords" content="虚舟实验室,xuzhoulab,果园工作室,guoyuancode">
+    <meta charset="UTF-8">
+    
+    
+    <style>
+        /* 成员页专属样式 */
+        .team-members {
+            padding: 60px 0;
+            background: rgba(10, 10, 30, 0.7);
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 240, 255, 0.05) 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(255, 0, 240, 0.05) 0%, transparent 30%);
+        }
+        
+        #team-members-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+            position: relative;
+        }
+        
+        #team-members-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 3px;
+        }
+        
+        .member-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .member-card {
+            background: rgba(15, 15, 35, 0.7);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+        
+        .member-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg, 
+                rgba(0, 240, 255, 0.1) 0%, 
+                rgba(255, 0, 240, 0.1) 100%
+            );
+            z-index: -1;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 240, 255, 0.2);
+            border-color: var(--primary-color);
+        }
+        
+        .member-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .member-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background: var(--secondary-color);
+        }
+        
+        .member-meta {
+            margin: 20px 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .member-id {
+            display: block;
+            color: #aaa;
+            margin-bottom: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+        }
+        
+        .member-bio {
+            margin: 15px 0;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .member-sign {
+            display: block;
+            margin-top: 15px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.7);
+            border-left: 2px solid var(--secondary-color);
+            padding-left: 12px;
+            position: relative;
+        }
+        
+        .member-sign::before {
+            content: '"';
+            position: absolute;
+            left: 5px;
+            top: -5px;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+        }
+        
+        .social-link {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--primary-color);
+            border-radius: 20px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .social-link:hover {
+            background: var(--primary-color);
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+        }
+        
+        .no-link {
+            color: #777;
+            font-size: 0.85rem;
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .member-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            #team-members-title {
+                font-size: 2rem;
+            }
+        }
+        /* 返回按钮样式 */
+.back-to-home {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.back-to-home a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(0, 240, 255, 0.1);
+    border: 1px solid var(--primary-color);
+    border-radius: 50px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.back-to-home a:hover {
+    background: var(--primary-color);
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+}
+
+.back-to-home svg {
+    transition: transform 0.3s ease;
+}
+
+.back-to-home a:hover svg {
+    transform: translateX(-3px);
+}
+    </style>
+</head>
+<body><div class="back-to-home">
+    <a href="/" class="cyber-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"></path>
+        </svg>
+        返回首页
+    </a>
+</div>
+
+    <div class="cyber-container">
+        <!-- 团队成员展示 - 完整原始数据 -->
+        <section class="team-members">
+            <h1 id="team-members-title">全体成员</h1>
+            <div class="member-grid">
+
+
+                <!-- 云云 -->
+                <div class="member-card">
+                    <h3>云云 </h3>
+                    <div class="member-meta">
+                        <span class="member-id">QQ：1159428885</span>
+                        <p class="member-bio">虚舟实验室创始人</p>
+                        <p class="member-sign">在一个角落……一个名为云云的账号苏醒了……</p>
+                    </div>
+                    <a href="https://www.ccw.site/student/6218d72512f8c304d85459c2" class="social-link" target="_blank">CCW个人页面</a>
+                </div>
+
+
+                <!-- 果园 -->
+                <div class="member-card">
+                    <h3>果园</h3>
+                    <div class="member-meta">
+                        <span class="member-id">QQ：386498317</span>
+                        <p class="member-bio">会AI、Python、Scratch</p>
+                        <p class="member-sign">请记得那些对你好的人，因为他本可以不这样</p>
+                    </div>
+                    <a href="https://www.ccw.site/student/61ef9efe4449842875d8f7fe" class="social-link" target="_blank">CCW个人页面</a>
+                </div>
+
+
+                <!-- 上古米歇尔 -->
+                <div class="member-card">
+                    <h3>上古米歇尔</h3>
+                    <div class="member-meta">
+                        <span class="member-id">QQ：2373460868</span>
+                        <p class="member-bio">会C++、汇编，懂电脑</p>
+                        <p class="member-sign">知觉为感觉赋予意义，所以知觉是对世界的解释，而非完美的如实再现。</p>
+                    </div>
+                    <a href="https://www.ccw.site/student/627e031a5061e01d8dd6d4d5" class="social-link" target="_blank">CCW个人页面</a>
+                </div>
+
+                <!--MC回报-->
+                <div class="member-card">
+                    <h3>MC回报</h3>
+                    <div class="member-meta">
+                        <p class="member-bio">熟练掌握CCW数据处理，也懂美工，而且在线时间挺长（</p>
+                        <p class="member-sign">真心的对我好，不要求回报</p>
+                    </div>
+                    <a href="https://www.ccw.site/student/64d6ff1c206d574f8bd9227f" class="social-link" target="_blank">CCW个人页面</a>
+                </div>
+
+                <!--W·凌雾-->
+                <div class="member-card">
+                    <h3>W·凌雾</h3>
+                    <div class="member-meta">
+                        <p class="member-bio">没有介绍（</p>
+                        <p class="member-sign">此间，作凌雾，亦为澄霄。</p>
+                    </div>
+                    <a href="https://www.ccw.site/student/6252901078c2a24e1fd0b051" class="social-link" target="_blank">CCW个人页面</a>
+                </div>
+
+                <!--派大星-->
+                <div class="member-card">
+                    <h3>派大星</h3>
+                    <div class="member-meta">
+                        <p class="member-bio">为虚舟实验室2025SummerGameJam参赛战队贡献巨大！</p>
+                        <p class="member-sign">这个人很懒，没有写个性签名。</p>
+                    </div>
+                    <a href="https://www.ccw.site/student/63944bd3adf27e7b487b6407" class="social-link" target="_blank">CCW个人页面</a>
+                </div>
+
+                <!--???-->
+                <div class="member-card">
+                    <h3>???</h3>
+                    <div class="member-meta">
+                        <p class="member-bio">不是，这人叫什么我还不知道呢</p>
+                        <p class="member-sign">这个人很懒，没有写个性签名。</p>
+                    </div>
+                    <a href="#" class="social-link" target="_blank">🔗未知的链接</a>
+                </div>
+
+
+
+
+
+
+
+            </div>
+        </section>
+    </div>
+
+    <script src="./members_files/scripts.js.下载"></script>
+<script defer="" src="./members_files/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;rayId&quot;:&quot;95b437b61eac76d9&quot;,&quot;version&quot;:&quot;2025.6.2&quot;,&quot;r&quot;:1,&quot;token&quot;:&quot;4fb97d78bf434ce7981a3b5e3ef3ef0c&quot;,&quot;serverTiming&quot;:{&quot;name&quot;:{&quot;cfExtPri&quot;:true,&quot;cfEdge&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfL4&quot;:true,&quot;cfSpeedBrain&quot;:true,&quot;cfCacheStatus&quot;:true}}}" crossorigin="anonymous"></script>
+
+</body></html>
