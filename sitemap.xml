@@ -3,7 +3,6 @@
     <!-- 核心页面 -->
     <sitemap>
         <loc>https://www.xuzhoulab.cn/</loc>
-        <lastmod>2025-07-25</lastmod>
         <priority>1.0</priority>
         <changefreq>daily</changefreq>
     </sitemap>
