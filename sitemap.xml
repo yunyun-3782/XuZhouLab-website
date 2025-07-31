@@ -4,22 +4,27 @@
     <sitemap>
         <loc>https://www.xuzhoulab.cn/</loc>
         <priority>1.0</priority>
-        <changefreq>daily</changefreq>
     </sitemap>
 
     <!-- 产品集合 -->
     <sitemap>
-        <loc>https://www.xuzhoulab.cn/2025summergamejam.html</loc>
+        <loc>https://www.xuzhoulab.cn/2025summergamejam</loc>
         <priority>0.9</priority>
     </sitemap>
 
     <!-- 工具类 -->
     <sitemap>
-        <loc>https://www.xuzhoulab.cn/tool/packaged.html</loc>
+        <loc>https://www.xuzhoulab.cn/tool/packaged</loc>
         <priority>0.7</priority>
-        <changefreq>monthly</changefreq>
     </sitemap>
 
     <!-- 其他重要页面 -->
-    <!-- 暂无更多重要页面 -->
+    <sitemap>
+        <loc>https://www.xuzhoulab.cn/members</loc>
+        <priority>0.8</priority>
+    </sitemap>
+    <sitemap>
+        <loc>https://www.xuzhoulab.cn/members/dimission</loc>
+        <priority>0.8</priority>
+    </sitemap>
 </sitemapindex>
