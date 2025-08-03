@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>跳转确认 - 安全提示</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f5f7fa;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 550px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+    }
+
+    .warning-icon {
+      width: 50px;
+      height: 50px;
+      background-color: #fff3cd;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 20px;
+      font-size: 24px;
+      color: #fd7e14;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2d3436;
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+
+    .info-text {
+      color: #636e72;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      font-size: 15px;
+    }
+
+    .url-box {
+      background-color: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 6px;
+      padding: 12px 15px;
+      margin: 15px 0 25px;
+      word-break: break-all;
+      font-size: 14px;
+      color: #2d3436;
+      max-height: 100px;
+      overflow-y: auto;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 12px 0;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+    }
+
+    .btn-cancel {
+      background-color: #e9ecef;
+      color: #495057;
+    }
+
+    .btn-cancel:hover {
+      background-color: #dee2e6;
+    }
+
+    .btn-confirm {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .btn-confirm:hover {
+      background-color: #0069d9;
+    }
+
+    .footer-note {
+      margin-top: 25px;
+      font-size: 13px;
+      color: #868e96;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="warning-icon">⚠️</div>
+    <h1>确认跳转到外部网站</h1>
+    <p class="info-text">你即将离开本站，跳转到以下外部链接。该网站的内容和安全性与本站无关，请谨慎访问。</p>
+    
+    <div class="url-box" id="targetUrl">加载中...</div>
+    
+    <div class="btn-group">
+      <button class="btn btn-cancel" onclick="history.back()">取消</button>
+      <button class="btn btn-confirm" onclick="confirmJump()">继续访问</button>
+    </div>
+    
+    <p class="footer-note">提示：请确认该链接的安全性，保护好个人信息和财产安全。</p>
+  </div>
+
+  <script>
+    // 存储目标链接（从URL参数中提取）
+    let targetUrl = '';
+
+    // 页面加载时解析URL参数
+    window.onload = function() {
+      // 获取URL中"?"后面的参数部分
+      const queryString = window.location.search;
+      
+      // 如果有参数，提取"?"后面的内容作为目标链接
+      if (queryString && queryString.startsWith('?')) {
+        // 去掉开头的"?"，然后解码（处理特殊字符）
+        targetUrl = decodeURIComponent(queryString.substring(1));
+        
+        // 显示目标链接到页面
+        document.getElementById('targetUrl').textContent = targetUrl;
+      } else {
+        // 如果没有参数，提示错误
+        document.getElementById('targetUrl').textContent = '未找到有效的跳转链接';
+        document.querySelector('.btn-confirm').disabled = true;
+        document.querySelector('.btn-confirm').style.opacity = '0.6';
+        document.querySelector('.btn-confirm').style.cursor = 'not-allowed';
+      }
+    };
+
+    // 确认跳转函数
+    function confirmJump() {
+      if (targetUrl) {
+        // 验证链接是否以http/https开头（避免无效链接）
+        if (targetUrl.startsWith('http://') || targetUrl.startsWith('https://')) {
+          window.location.href = targetUrl;
+        } else {
+          // 如果链接没有协议，自动添加https://
+          window.location.href = 'https://' + targetUrl;
+        }
+      }
+    }
+  </script>
+</body>
+</html>
