@@ -17,14 +17,18 @@
         <loc>https://www.xuzhoulab.cn/tool/packaged</loc>
         <priority>0.7</priority>
     </url>
+    <url>
+        <loc>https://www.xuzhoulab.cn/tool/Screensaver</loc>
+        <priority>0.7</priority>
+    </url>
 
-    <!-- 其他重要页面 -->
+    <!-- 其他页面 -->
     <url>
         <loc>https://www.xuzhoulab.cn/members</loc>
-        <priority>0.8</priority>
+        <priority>0.6</priority>
     </url>
     <url>
         <loc>https://www.xuzhoulab.cn/members/dimission</loc>
-        <priority>0.7</priority>
+        <priority>0.5</priority>
     </url>
 </urlset>
