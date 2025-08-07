@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>跳转确认 - XuZhouLab | 虚舟实验室</title>
   <style>
+    /* 样式保持不变 */
     * {
       margin: 0;
       padding: 0;
@@ -34,7 +35,6 @@
       width: 60px;
       height: 60px;
       margin: 0 auto 20px;
-      /* 确保图片居中显示 */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -43,8 +43,8 @@
     .logo-img {
       width: 100%;
       height: 100%;
-      object-fit: contain; /* 保持图片比例，不拉伸 */
-      border-radius: 8px; /* 可选：给图片加圆角 */
+      object-fit: contain;
+      border-radius: 8px;
     }
 
     h1 {
@@ -105,7 +105,13 @@
       color: white;
     }
 
-    .btn-confirm:hover {
+    .btn-confirm:disabled {
+      background-color: #6c757d;
+      cursor: not-allowed;
+      opacity: 0.8;
+    }
+
+    .btn-confirm:not(:disabled):hover {
       background-color: #0069d9;
     }
 
@@ -129,9 +135,9 @@
     <div class="url-box" id="targetUrl">加载中...</div>
     
     <div class="btn-group">
-      <!-- 取消按钮跳转到指定网址 -->
-      <button class="btn btn-cancel" onclick="window.location.href='https://www.xuzhoulab.cn'">取消</button>
-      <button class="btn btn-confirm" onclick="confirmJump()">继续访问</button>
+      <button class="btn btn-cancel" onclick="window.location.href='https://www.xuzhoulab.cn'">返回 XuZhouLab</button>
+      <!-- 关键修复：添加 onclick 事件绑定 -->
+      <button class="btn btn-confirm" id="confirmBtn" disabled onclick="confirmJump()">访问</button>
     </div>
     
     <p class="footer-note">提示：请确认该链接的安全性，保护好个人信息和财产安全。</p>
@@ -139,6 +145,7 @@
 
   <script>
     let targetUrl = '';
+    const confirmBtn = document.getElementById('confirmBtn');
 
     window.onload = function() {
       const queryString = window.location.search;
@@ -146,16 +153,38 @@
       if (queryString && queryString.startsWith('?')) {
         targetUrl = decodeURIComponent(queryString.substring(1));
         document.getElementById('targetUrl').textContent = targetUrl;
+        startCountdown(); // 启动倒计时
       } else {
-        document.getElementById('targetUrl').textContent = '未找到有效的跳转链接';
-        document.querySelector('.btn-confirm').disabled = true;
-        document.querySelector('.btn-confirm').style.opacity = '0.6';
-        document.querySelector('.btn-confirm').style.cursor = 'not-allowed';
+        document.getElementById('targetUrl').textContent = '未找到有效的跳转链接，请在?后绑定需跳转链接';
+        confirmBtn.disabled = true;
+        confirmBtn.textContent = '继续访问';
       }
     };
 
+    // 倒计时功能
+    function startCountdown() {
+      let seconds = 5;
+      
+      // 更新按钮文本
+      confirmBtn.textContent = `继续访问 (${seconds}s)`;
+      
+      // 每秒更新一次倒计时
+      const countdownInterval = setInterval(() => {
+        seconds--;
+        
+        if (seconds <= 0) {
+          clearInterval(countdownInterval);
+          confirmBtn.disabled = false;
+          confirmBtn.textContent = '继续访问';
+        } else {
+          confirmBtn.textContent = `继续访问 (${seconds}s)`;
+        }
+      }, 1000);
+    }
+
     function confirmJump() {
       if (targetUrl) {
+        // 补充协议检查，确保跳转格式正确
         if (targetUrl.startsWith('http://') || targetUrl.startsWith('https://')) {
           window.location.href = targetUrl;
         } else {
