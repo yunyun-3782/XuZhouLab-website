@@ -35,4 +35,13 @@
         <loc>https://www.xuzhoulab.cn/members/dimission</loc>
         <priority>0.5</priority>
     </url>
+
+    <!-- 部分成员专属页面 -->
+    <url>
+        <loc>https://www.xuzhoulab.cn/member/wyz</loc>
+        <priority>0.6</priority>
+    </url>
+
+
+
 </urlset>
