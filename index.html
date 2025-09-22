@@ -1,24 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>XuZhouLab｜虚舟实验室</title>
     <link rel="stylesheet" href="/static/css/style.css">
-
-
     <meta name="description" content="虚舟实验室(XuZhou Lab)是青少年编程创作团队，专注Scratch游戏开发与编程教学，也欢迎加入我们的团队！">
-    <meta name="keywords" content="虚舟实验室,虚舟,虚舟实验工作室,虚舟工作室,虚舟游戏,虚舟编程,虚舟代码,xuzhoulab,xuzhoustudio,xuzhoucode,xuzhougame,xuzhoulabstudio,xuzhougzs,xzlab,xzgzs,xzstudio,xzstu,xzsys,xuzhousys,青少年编程团队,scratch,scratch游戏开发,青少年工作室,编程团队,青少年创意游戏作品,青少年编程,少儿编程团队,scratch聚集地,ccw,共创世界,小码王,xiaomawang,scratch中社,中社,scratch-cn,gamejam,ccwgamejam,gandi,小码王社区,学生游戏设计,学生开发团队,开发团队,少儿开发团队,青少年开发游戏,学生开发游戏,徐州实验室">
+    <meta name="keywords" content="虚舟实验室,虚舟,虚舟实验工作室,虚舟工作室,虚舟游戏,虚舟编程,虚舟代码,xuzhoulab,xuzhoustudio,xuzhoucode,xuzhougame,xuzhoulabstudio,xuzhougzs,xzlab,xzgzs,xzstudio,xzstu,xzsys,xuzhousys,青少年编程团队,scratch,scratch游戏开发,青少年工作室,编程团队,青少年创意游戏作品,青少年编程,少儿编程团队,青少年开发游戏,学生开发游戏,徐州实验室">
     <meta charset="UTF-8">
-
-
     <meta property="og:title" content="虚舟实验室">
     <meta property="og:description" content="虚舟实验室(XuZhou Lab)是青少年编程创作团队，专注Scratch游戏开发与编程教学，也欢迎加入我们的团队！">
     <meta property="og:image" content="https://www.xuzhoulab.cn/static/image/icon/logo.png">
     <meta property="og:url" content="https://www.xuzhoulab.cn/">
     <meta property="og:locale" content="zh_CN">
-
+    
     <style>
         /* 通知系统样式 */
         .cyber-notification {
@@ -183,6 +178,7 @@
             overflow: hidden;
             box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
         }
+        
         /* 成员页专属样式 */
         .team-members {
             padding: 60px 0;
@@ -341,6 +337,69 @@
             text-align: center;
         }
         
+        /* 时间线样式 */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 60px auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+            text-align: right;
+        }
+        
+        .right {
+            left: 50%;
+            text-align: left;
+        }
+        
+        .left::after {
+            right: -10px;
+        }
+        
+        .right::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: rgba(20, 20, 40, 0.8);
+            border-radius: 8px;
+            border: 1px solid var(--primary-color);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+        
         /* 响应式设计 */
         @media (max-width: 768px) {
             .member-grid {
@@ -350,17 +409,42 @@
             #team-members-title {
                 font-size: 2rem;
             }
+            
+            .data-grid {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .grid-item {
+                margin-bottom: 20px;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 40px;
+                padding-right: 25px;
+                text-align: left;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .left::after, .right::after {
+                left: 21px;
+            }
+            
+            .right {
+                left: 0;
+            }
         }
     </style>
 </head>
 <body>
-
-
-
-    <img src="https://w.saobby.com/w/beie0dt7">
-
-
-
     <div class="cyber-container">
         <!-- 全息导航栏 -->
         <nav class="cyber-nav">
@@ -377,7 +461,8 @@
         <header class="cyber-header">
             <h1>虚舟实验室</h1>
             <p class="cyber-subtitle">探未来之境 · 载无界新生</p>
-            <div class="cyber-grid">
+            
+            <div class="data-grid">
                 <div class="grid-item">
                     <span class="data-number" data-target="7">7</span>
                     <span class="data-label">团队成员</span>
@@ -391,35 +476,74 @@
                     <span class="data-label">热情投入</span>
                 </div>
             </div>
+            
             <a href="#members" class="cyber-button">查看完整成员</a>
         </header>
+    </div>
 
+    <!-- 时间线 -->
+    <section class="timeline">
+        <h2 class="section-title">我们的历程</h2>
+        
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <h3>2025年7月5日</h3>
+                <p>虚舟实验室正式成立，团队开始在CCW平台上发布作品</p>
+            </div>
+        </div>
+        
+        <div class="timeline-item right">
+            <div class="timeline-content">
+                <h3>2025年7月7日</h3>
+                <p>虚舟实验室首次公开招募新成员</p>
+            </div>
+        </div>
+        
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <h3>2025年7月17日</h3>
+                <p>发布CSense工具，提升团队开发效率</p>
+            </div>
+        </div>
+        
+        <div class="timeline-item right">
+            <div class="timeline-content">
+                <h3>2025年7月25日</h3>
+                <p>应对SSH入侵事件，系统于当晚恢复</p>
+            </div>
+        </div>
+        
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <h3>2025年8月11日</h3>
+                <p>完成论坛域名迁移和系统架构重建</p>
+            </div>
+        </div>
+    </section>
 
+    <div class="cyber-container">
         <section class="products-section">
             <h2 class="section-title">我们的产品</h2>
 
             <div class="product-container">
-
                 <div class="product-card">
                     <h3 class="product-title">2025 Summer GameJam</h3>
                     <span class="product-status status-development">开发中</span>
                     <p class="product-description">极限开发已完成！但是bug不少还不够完善对不起让大家失望了！</p>
                     <a href="/2025summergamejam" class="cyber-button small">前往康康</a>
                 </div>
-
             </div>
         </section>
-
 
         <!-- 最新消息 -->
         <section class="quick-links">
             <h2 class="section-title">📚 最新消息</h2>
-             <div class="link-grid">
+            <div class="link-grid">
                 <a href="https://forum.xuzhoulab.cn/yunyun/277/" class="link-card" target="_blank">
                     <div class="link-text">论坛域名迁移及数据重置公告</div>
                     <div class="link-text">2025/08/12</div>
                 </a>
-                 <a href="https://forum.xuzhoulab.cn/yunyun/146" class="link-card" target="_blank">
+                <a href="https://forum.xuzhoulab.cn/yunyun/146" class="link-card" target="_blank">
                     <div class="link-text">SSH入侵事件说明</div>
                     <div class="link-text">2025/07/25</div>
                 </a>
@@ -463,7 +587,7 @@
                     <div class="link-text">WebApp</div>
                 </a>
                 <a href="/file" class="link-card" target="_blank">
-                    <div class="link-icon">⏬</div>
+                    <div class="link-icon">⬇️</div>
                     <div class="link-text">下载站</div>
                 </a>
                 <a href="/tool/Screensaver" class="link-card" target="_blank">
@@ -476,16 +600,13 @@
         <!-- 热门文章 -->
         <section class="quick-links">
             <h2 class="section-title">🔥 热门文章</h2>
-             <div class="link-grid">
-                 <a href="https://forum.xuzhoulab.cn/yunyun/76" class="link-card" target="_blank">
+            <div class="link-grid">
+                <a href="https://forum.xuzhoulab.cn/yunyun/76" class="link-card" target="_blank">
                     <div class="link-text">欢迎使用CSense！</div>
                     <div class="link-text">2025/07/17</div>
                 </a>
             </div>
         </section>
-
-
-
 
         <!-- 页脚 -->
         <footer class="cyber-footer">
@@ -500,27 +621,21 @@
                     <p>QQ好友 1159428885</p>
                     <p>飞书 请先通过其它方式获得加入链接</p>
                 </div>
-               <div class="footer-section">
+                <div class="footer-section">
                     <h3>友情链接</h3>
                     <br>
                     <a href="https://www.saobby.com/" style="color: white;" target="_blank">Saobby的主页</a><br>
-                    <p><a href="https://www.rainyun.com/xzlab_?s=website" style="color: white;" target="_blank">🌧️ 雨云</a> ✖️ <a href="https://github.com/yunyun-3782/www.xuzhoulab.cn" style="color: white;" target="_blank">🐱 Github</a></p>
+                    <p><a href="https://www.rainyun.com/xzlab?s=website" style="color: white;" target="blank">🌧️ 雨云</a> ✖️ <a href="https://github.com/yunyun-3782/www.xuzhoulab.cn" style="color: white;" target="_blank">🐱 Github</a></p>
                 </div>
             </div>
         </footer>
     </div>
 
-
-
-
-<div class="cyber-container">
+    <div class="cyber-container">
         <!-- 团队成员展示 - 完整原始数据 -->
         <section class="team-members">
             <div id="members"><h2 id="team-members-title">全体成员</h2></div>
             <div class="member-grid">
-                
-
-
                 <!-- 云云 -->
                 <div class="member-card">
                     <h3>云云 </h3>
@@ -542,7 +657,6 @@
                         <p class="member-sign">知觉为感觉赋予意义，所以知觉是对世界的解释，而非完美的如实再现。</p>
                     </div>
                 </div>
-
 
                 <!--W·凌雾-->
                 <div class="member-card">
@@ -580,8 +694,6 @@
                     </div>
                 </div>
 
-
-
                 <!--离职页面-->
                 <div class="member-card">
                     <h3>永远再见！</h3>
@@ -592,27 +704,9 @@
                     </div>
                     <a href="/members/dimission" class="social-link">看看吧！</a>
                 </div>
-
-
             </div>
         </section>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
 
     <script>
         // 通知系统功能
@@ -669,5 +763,3 @@
     </script>
 </body>
 </html>
-<!--
--->
