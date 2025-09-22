@@ -606,79 +606,67 @@
 
 
 
-
-
-
-
-
-
-
-  
-
-
-
-
-    <script>
-        // 通知系统功能
-        let notificationTimer;
+<script>
+    // 通知系统功能
+    let notificationTimer;
+    
+    function showNotification() {
+        const notification = document.getElementById('notification');
+        clearTimeout(notificationTimer);
         
-        function showNotification() {
-            const notification = document.getElementById('notification');
-            clearTimeout(notificationTimer);
+        notification.classList.add('active');
+        notificationTimer = setTimeout(() => {
+            closeNotification();
+        }, 4000);
+    }
+    
+    function closeNotification() {
+        const notification = document.getElementById('notification');
+        notification.classList.remove('active');
+    }
+    
+    // 数字计数动画
+    function animateCounters() {
+        const counters = document.querySelectorAll('.data-number');
+        const speed = 1000; // 动画速度，数值越小越快
+        
+        counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            const count = parseInt(counter.innerText);
+            const increment = Math.ceil(target / speed);
             
-            notification.classList.add('active');
-            notificationTimer = setTimeout(() => {
-                closeNotification();
-            }, 4000);
-        }
-        
-        function closeNotification() {
-            const notification = document.getElementById('notification');
-            notification.classList.remove('active');
-        }
+            const updateCount = () => {
+                const currentCount = parseInt(counter.innerText);
+                
+                if(currentCount < target) {
+                    counter.innerText = Math.min(currentCount + increment, target);
+                    counter.classList.add('counting');
+                    setTimeout(updateCount, 1);
+                } else {
+                    counter.classList.remove('counting');
+                }
+            };
+            
+            updateCount();
+        });
+    }
+    
+    // 页面加载
+    document.addEventListener('DOMContentLoaded', function() {
+        showNotification();
         
         // 数字计数动画
-        function animateCounters() {
-            const counters = document.querySelectorAll('.data-number');
-            const speed = 1000; // 动画速度，数值越小越快
-            
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                const count = parseInt(counter.innerText);
-                const increment = Math.ceil(target / speed);
-                
-                const updateCount = () => {
-                    const currentCount = parseInt(counter.innerText);
-                    
-                    if(currentCount < target) {
-                        counter.innerText = Math.min(currentCount + increment, target);
-                        counter.classList.add('counting');
-                        setTimeout(updateCount, 1);
-                    } else {
-                        counter.classList.remove('counting');
-                    }
-                };
-                
-                updateCount();
-            });
-        }
-        
-        // 页面加载
-        document.addEventListener('DOMContentLoaded', function() {
-            showNotification();
-            
-            // 数字计数动画
-            setTimeout(animateCounters, 100);
-        });
+        setTimeout(animateCounters, 100);
+    });
 
-
-
-
-        // 检测设备类型并跳转
+    // 检测设备类型并跳转
+    window.addEventListener('load', function() {
         if (window.innerWidth < 768) {
-                window.location.href = 'https://www.xuzhoulab.cn/m.html;
+            window.location.href = 'https://www.xuzhoulab.cn/m.html';
         }
-    </script>
+    });
+</script>
+
 </body>
 </html>
 <!--
