@@ -1,24 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>XuZhouLab｜虚舟实验室</title>
+    <title>XuZhouLab｜虚舟实验室 （手机版适配）</title>
     <link rel="stylesheet" href="/static/css/style.css">
-
-
     <meta name="description" content="虚舟实验室(XuZhou Lab)是青少年编程创作团队，专注Scratch游戏开发与编程教学，也欢迎加入我们的团队！">
-    <meta name="keywords" content="虚舟实验室,虚舟,虚舟实验工作室,虚舟工作室,虚舟游戏,虚舟编程,虚舟代码,xuzhoulab,xuzhoustudio,xuzhoucode,xuzhougame,xuzhoulabstudio,xuzhougzs,xzlab,xzgzs,xzstudio,xzstu,xzsys,xuzhousys,青少年编程团队,scratch,scratch游戏开发,青少年工作室,编程团队,青少年创意游戏作品,青少年编程,少儿编程团队,scratch聚集地,ccw,共创世界,小码王,xiaomawang,scratch中社,中社,scratch-cn,gamejam,ccwgamejam,gandi,小码王社区,学生游戏设计,学生开发团队,开发团队,少儿开发团队,青少年开发游戏,学生开发游戏,徐州实验室">
+    <meta name="keywords" content="虚舟实验室,虚舟,虚舟实验工作室,虚舟工作室,虚舟游戏,虚舟编程,虚舟代码,xuzhoulab,xuzhoustudio,xuzhoucode,xuzhougame,xuzhoulabstudio,xuzhougzs,xzlab,xzgzs,xzstudio,xzstu,xzsys,xuzhousys,青少年编程团队,scratch,scratch游戏开发,青少年工作室,编程团队,青少年创意游戏作品,青少年编程,少儿编程团队,青少年开发游戏,学生开发游戏,徐州实验室">
     <meta charset="UTF-8">
-
-
     <meta property="og:title" content="虚舟实验室">
     <meta property="og:description" content="虚舟实验室(XuZhou Lab)是青少年编程创作团队，专注Scratch游戏开发与编程教学，也欢迎加入我们的团队！">
     <meta property="og:image" content="https://www.xuzhoulab.cn/static/image/icon/logo.png">
     <meta property="og:url" content="https://www.xuzhoulab.cn/">
     <meta property="og:locale" content="zh_CN">
-
+    
     <style>
         /* 通知系统样式 */
         .cyber-notification {
@@ -183,6 +178,7 @@
             overflow: hidden;
             box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
         }
+        
         /* 成员页专属样式 */
         .team-members {
             padding: 60px 0;
@@ -341,6 +337,69 @@
             text-align: center;
         }
         
+        /* 时间线样式 */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 60px auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+            text-align: right;
+        }
+        
+        .right {
+            left: 50%;
+            text-align: left;
+        }
+        
+        .left::after {
+            right: -10px;
+        }
+        
+        .right::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: rgba(20, 20, 40, 0.8);
+            border-radius: 8px;
+            border: 1px solid var(--primary-color);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+        
         /* 响应式设计 */
         @media (max-width: 768px) {
             .member-grid {
@@ -350,145 +409,42 @@
             #team-members-title {
                 font-size: 2rem;
             }
+            
+            .data-grid {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .grid-item {
+                margin-bottom: 20px;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 40px;
+                padding-right: 25px;
+                text-align: left;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .left::after, .right::after {
+                left: 21px;
+            }
+            
+            .right {
+                left: 0;
+            }
         }
     </style>
 </head>
 <body>
-
-    <!-- 桌面端引导移动端弹窗（适配虚舟实验室风格） -->
-<div id="desktopToMobilePrompt" class="fixed inset-0 bg-black bg-opacity-70 z-9999 flex items-center justify-center hidden backdrop-blur-sm">
-    <div class="bg-[rgba(15,15,35,0.9)] border border-[rgba(0,240,255,0.3)] rounded-xl w-full max-w-md p-6 shadow-[0_0_30px_rgba(0,240,255,0.2)] transform transition-all duration-500 scale-95 opacity-0" id="popupContent">
-        <!-- 弹窗头部 -->
-        <div class="text-center mb-6 relative">
-            <!-- 霓虹装饰线 -->
-            <div class="absolute top-0 left-1/2 w-24 h-1 bg-gradient-to-r from-[#00f0ff] to-[#ff00f0] transform -translate-x-1/2 rounded-full"></div>
-            
-            <!-- 手机图标（赛博风格动画） -->
-            <div class="inline-block p-4 bg-[rgba(0,240,255,0.1)] rounded-full mb-4 mt-2 animate-[float_3s_ease-in-out_infinite]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="96" fill="#00f0ff" viewBox="0 0 24 48">
-                    <path d="M18 2c-1.1 0-2 .9-2 2v40c0 1.1.9 2 2 2h-4c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h4zm-6 44c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v40c0 1.1.9 2 2 2h6z"/>
-                </svg>
-            </div>
-            
-            <!-- 标题与描述（适配网站文案风格） -->
-            <h2 class="text-2xl font-bold text-[#00f0ff] mb-2 text-shadow-[0_0_10px_rgba(0,240,255,0.7)]">建议使用移动设备访问</h2>
-            <p class="text-gray-300 text-sm">当前为移动端专属页面，电脑端官网正在完善中<br>点击下方按钮跳转至移动端适配页面</p>
-        </div>
-        
-        <!-- 功能按钮（双按钮设计） -->
-        <div class="flex flex-col space-y-3">
-            <!-- 立即前往按钮（主按钮，跳转到您指定的链接） -->
-            <a href="https://www.xuzhoulab.cn/m" 
-               class="bg-gradient-to-r from-[#00f0ff] to-[#00aaff] hover:from-[#00aaff] hover:to-[#00f0ff] text-black font-medium py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] text-center shadow-[0_0_15px_rgba(0,240,255,0.5)]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="inline-block mr-2">
-                    <path d="M11.354 5.646a.5.5 0 0 1 0 .708L8.707 9l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
-                    <path d="M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
-                </svg>
-                立即前往移动端页面
-            </a>
-            
-            <!-- 关闭按钮（次按钮，24小时内不再显示） -->
-            <button id="closePopup" 
-                    class="bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.1)] text-gray-300 hover:text-[#00f0ff] font-medium py-2 px-4 rounded-lg transition-all duration-300 text-center border border-[rgba(255,255,255,0.1)]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="inline-block mr-2">
-                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                </svg>
-                关闭提示（24小时内不再显示）
-            </button>
-        </div>
-    </div>
-</div>
-
-<!-- 弹窗逻辑脚本（无需修改） -->
-<script>
-    // 获取弹窗元素
-    const promptPopup = document.getElementById('desktopToMobilePrompt');
-    const popupContent = document.getElementById('popupContent');
-    const closeBtn = document.getElementById('closePopup');
-
-    // 1. 检测是否为桌面设备（屏幕宽度 ≥ 768px，与您网站现有适配逻辑一致）
-    function isDesktop() {
-        return window.innerWidth >= 768;
-    }
-
-    // 2. 检测用户是否已关闭过弹窗（localStorage 记录，24小时内不重复显示）
-    function hasClosedBefore() {
-        const closeTime = localStorage.getItem('xuzhouLabPopupClosedTime');
-        if (!closeTime) return false;
-        // 计算当前时间与关闭时间的差值（毫秒），超过24小时则重新显示
-        const now = new Date().getTime();
-        return (now - parseInt(closeTime)) < 24 * 60 * 60 * 1000;
-    }
-
-    // 3. 显示弹窗（带渐入动画）
-    function showPopup() {
-        if (isDesktop() && !hasClosedBefore()) {
-            promptPopup.classList.remove('hidden');
-            // 延迟触发动画，确保过渡效果生效
-            setTimeout(() => {
-                popupContent.classList.remove('scale-95', 'opacity-0');
-                popupContent.classList.add('scale-100', 'opacity-100');
-            }, 50);
-        }
-    }
-
-    // 4. 隐藏弹窗（带渐出动画）
-    function hidePopup() {
-        popupContent.classList.remove('scale-100', 'opacity-100');
-        popupContent.classList.add('scale-95', 'opacity-0');
-        
-        setTimeout(() => {
-            promptPopup.classList.add('hidden');
-            // 记录关闭时间到localStorage
-            localStorage.setItem('xuzhouLabPopupClosedTime', new Date().getTime().toString());
-        }, 300);
-    }
-
-    // 5. 绑定事件
-    // 关闭按钮点击事件
-    closeBtn.addEventListener('click', hidePopup);
-    // 点击弹窗背景关闭
-    promptPopup.addEventListener('click', (e) => {
-        if (e.target === promptPopup) hidePopup();
-    });
-    // 页面加载完成后显示弹窗
-    window.addEventListener('load', showPopup);
-    // 窗口大小改变时重新检测（如用户缩放浏览器）
-    window.addEventListener('resize', showPopup);
-</script>
-
-<!-- 补充弹窗所需的基础样式（适配您的网站） -->
-<style>
-    /* 动画定义 */
-    @keyframes float {
-        0% { transform: translateY(0px); }
-        50% { transform: translateY(-8px); }
-        100% { transform: translateY(0px); }
-    }
-    /* 文本阴影（复用您网站的设计） */
-    .text-shadow-\[0_0_10px_rgba<span data-type="inline-math" data-value="MFwsMjQwXCwyNTVcLDBcLjc="></span>\] {
-        text-shadow: 0 0 10px rgba(0,240,255,0.7);
-    }
-    /* 适配移动端隐藏弹窗（防止误显示） */
-    @media (max-width: 767px) {
-        #desktopToMobilePrompt {
-            display: none !important;
-        }
-    }
-</style>
-
-
-
-
-
-
-
-
-
-    <img src="https://w.saobby.com/w/beie0dt7">
-
-
-
     <div class="cyber-container">
         <!-- 全息导航栏 -->
         <nav class="cyber-nav">
@@ -505,7 +461,8 @@
         <header class="cyber-header">
             <h1>虚舟实验室</h1>
             <p class="cyber-subtitle">探未来之境 · 载无界新生</p>
-            <div class="cyber-grid">
+            
+            <div class="data-grid">
                 <div class="grid-item">
                     <span class="data-number" data-target="7">7</span>
                     <span class="data-label">团队成员</span>
@@ -519,40 +476,87 @@
                     <span class="data-label">热情投入</span>
                 </div>
             </div>
+            
             <a href="#members" class="cyber-button">查看完整成员</a>
         </header>
+    </div>
+
+    <!-- 时间线 -->
+    <section class="timeline">
+        <h2 class="section-title">我们的历程</h2>
+        
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <h3>2025年7月5日</h3>
+                <p>虚舟实验室正式成立，团队开始在CCW平台上发布作品</p>
+            </div>
+        </div>
+        
+        <div class="timeline-item right">
+            <div class="timeline-content">
+                <h3>2025年7月7日</h3>
+                <p>虚舟实验室首次公开招募新成员</p>
+            </div>
+        </div>
+        
+        <div class="timeline-item right">
+            <div class="timeline-content">
+                <h3>2025年7月25日</h3>
+                <p>应对SSH入侵事件，系统于当晚恢复</p>
+            </div>
+        </div>
+        
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <h3>2025年8月11日</h3>
+                <p>完成论坛域名迁移和系统架构重建</p>
+            </div>
+        </div>
+
+        <div class="timeline-item left">
+            <div class="timeline-content">
+                <h3>2025年9月22日</h3>
+                <p>虚舟实验室官宣退出CCW社区</p>
+            </div>
+        </div>
 
 
+
+
+
+
+
+
+
+    </section>
+
+    <div class="cyber-container">
         <section class="products-section">
             <h2 class="section-title">我们的产品</h2>
 
             <div class="product-container">
-
                 <div class="product-card">
                     <h3 class="product-title">2025 Summer GameJam</h3>
+                    <span class="product-status status-development">开发中</span>
                     <p class="product-description">极限开发已完成！但是bug不少还不够完善对不起让大家失望了！</p>
                     <a href="/2025summergamejam" class="cyber-button small">前往康康</a>
                 </div>
-                <div class="product-card">
-                    <h3 class="product-title">官网手机端适配</h3>
-                    <span class="product-status status-development">完善中</span>
-                    <p class="product-description">index（即主官网或电脑端）未完全完善，因特殊原因此页面被回档至两周前，在这两周内官网含大改，此页面数据为旧数据，如需查看最新版（对电脑适配不佳）请点击下方按钮</p>
-                    <a href="/m" class="cyber-button small">去查看</a>
-                </div>
-
             </div>
         </section>
-
 
         <!-- 最新消息 -->
         <section class="quick-links">
             <h2 class="section-title">📚 最新消息</h2>
-             <div class="link-grid">
+            <div class="link-grid">
+                <a href="https://forum.xuzhoulab.cn/yunyun/594/" class="link-card" target="_blank">
+                    <div class="link-text">虚舟实验室退出 CCW 共创世界的公告</div>
+                    <div class="link-text">2025/09/22</div>
+                </a>
                 <a href="https://forum.xuzhoulab.cn/yunyun/277/" class="link-card" target="_blank">
                     <div class="link-text">论坛域名迁移及数据重置公告</div>
                     <div class="link-text">2025/08/12</div>
                 </a>
-                 <a href="https://forum.xuzhoulab.cn/yunyun/146" class="link-card" target="_blank">
+                <a href="https://forum.xuzhoulab.cn/yunyun/146" class="link-card" target="_blank">
                     <div class="link-text">SSH入侵事件说明</div>
                     <div class="link-text">2025/07/25</div>
                 </a>
@@ -596,7 +600,7 @@
                     <div class="link-text">WebApp</div>
                 </a>
                 <a href="/file" class="link-card" target="_blank">
-                    <div class="link-icon">⏬</div>
+                    <div class="link-icon">⬇️</div>
                     <div class="link-text">下载站</div>
                 </a>
                 <a href="/tool/Screensaver" class="link-card" target="_blank">
@@ -606,18 +610,6 @@
             </div>
         </section>
 
-        <!-- 热门文章 -->
-        <section class="quick-links">
-            <h2 class="section-title">🔥 热门文章</h2>
-             <div class="link-grid">
-                 <a href="https://forum.xuzhoulab.cn/yunyun/76" class="link-card" target="_blank">
-                    <div class="link-text">欢迎使用CSense！</div>
-                    <div class="link-text">2025/07/17</div>
-                </a>
-            </div>
-        </section>
-
-
 
 
         <!-- 页脚 -->
@@ -625,7 +617,7 @@
             <div class="footer-grid">
                 <div class="footer-section">
                     <h3>关于我们</h3>
-                    <p>虚舟实验室，专注于编程领域，致力于在CCW平台创作与发布优质作品。</p>
+                    <p>虚舟实验室，专注于编程领域，致力于创作与发布优质作品。</p>
                     <p>探未来之境 · 载无界新生</p>
                 </div>
                 <div class="footer-section">
@@ -633,27 +625,21 @@
                     <p>QQ好友 1159428885</p>
                     <p>飞书 请先通过其它方式获得加入链接</p>
                 </div>
-               <div class="footer-section">
+                <div class="footer-section">
                     <h3>友情链接</h3>
                     <br>
                     <a href="https://www.saobby.com/" style="color: white;" target="_blank">Saobby的主页</a><br>
-                    <p><a href="https://www.rainyun.com/xzlab_?s=website" style="color: white;" target="_blank">🌧️ 雨云</a> ✖️ <a href="https://github.com/yunyun-3782/www.xuzhoulab.cn" style="color: white;" target="_blank">🐱 Github</a></p>
+                    <p><a href="https://www.rainyun.com/xzlab?s=website" style="color: white;" target="blank">🌧️ 雨云</a> ✖️ <a href="https://github.com/yunyun-3782/www.xuzhoulab.cn" style="color: white;" target="_blank">🐱 Github</a></p>
                 </div>
             </div>
         </footer>
     </div>
 
-
-
-
-<div class="cyber-container">
+    <div class="cyber-container">
         <!-- 团队成员展示 - 完整原始数据 -->
         <section class="team-members">
             <div id="members"><h2 id="team-members-title">全体成员</h2></div>
             <div class="member-grid">
-                
-
-
                 <!-- 云云 -->
                 <div class="member-card">
                     <h3>云云 </h3>
@@ -674,9 +660,7 @@
                         <p class="member-bio">C++大神，虽然不是真正意义上的成员，不过是云云的朋友</p>
                         <p class="member-sign">知觉为感觉赋予意义，所以知觉是对世界的解释，而非完美的如实再现。</p>
                     </div>
-                    <a href="https://www.ccw.site/student/627e031a5061e01d8dd6d4d5" class="social-link">CCW个人页面</a>
                 </div>
-
 
                 <!--W·凌雾-->
                 <div class="member-card">
@@ -685,7 +669,6 @@
                         <p class="member-bio">没有介绍（你猜为什么</p>
                         <p class="member-sign">此间，作凌雾，亦为澄霄。</p>
                     </div>
-                    <a href="https://www.ccw.site/student/6252901078c2a24e1fd0b051" class="social-link" target="_blank">CCW个人页面</a>
                 </div>
 
                 <!--派大星-->
@@ -695,7 +678,6 @@
                         <p class="member-bio">全能的糕手！</p>
                         <p class="member-sign">这个人很懒，没有写个性签名。</p>
                     </div>
-                    <a href="https://www.ccw.site/student/63944bd3adf27e7b487b6407" class="social-link" target="_blank">CCW个人页面</a>
                 </div>
 
                 <!--HIMH-->
@@ -705,7 +687,6 @@
                         <p class="member-bio">团队策划，游戏策划，技术支持</p>
                         <p class="member-sign">此生不悔入MC，来世还做方块人。</p>
                     </div>
-                    <a href="https://www.ccw.site/student/5e773492d42ff178479af7f5" class="social-link" target="_blank">CCW个人页面</a>
                 </div>
 
                 <!--MC回报-->
@@ -717,8 +698,6 @@
                     </div>
                 </div>
 
-
-
                 <!--离职页面-->
                 <div class="member-card">
                     <h3>永远再见！</h3>
@@ -729,78 +708,62 @@
                     </div>
                     <a href="/members/dimission" class="social-link">看看吧！</a>
                 </div>
-
-
             </div>
         </section>
     </div>
 
-
-
-
-
-<script>
-    // 通知系统功能
-    let notificationTimer;
-    
-    function showNotification() {
-        const notification = document.getElementById('notification');
-        clearTimeout(notificationTimer);
+    <script>
+        // 通知系统功能
+        let notificationTimer;
         
-        notification.classList.add('active');
-        notificationTimer = setTimeout(() => {
-            closeNotification();
-        }, 4000);
-    }
-    
-    function closeNotification() {
-        const notification = document.getElementById('notification');
-        notification.classList.remove('active');
-    }
-    
-    // 数字计数动画
-    function animateCounters() {
-        const counters = document.querySelectorAll('.data-number');
-        const speed = 1000; // 动画速度，数值越小越快
+        function showNotification() {
+            const notification = document.getElementById('notification');
+            clearTimeout(notificationTimer);
+            
+            notification.classList.add('active');
+            notificationTimer = setTimeout(() => {
+                closeNotification();
+            }, 4000);
+        }
         
-        counters.forEach(counter => {
-            const target = parseInt(counter.getAttribute('data-target'));
-            const count = parseInt(counter.innerText);
-            const increment = Math.ceil(target / speed);
-            
-            const updateCount = () => {
-                const currentCount = parseInt(counter.innerText);
-                
-                if(currentCount < target) {
-                    counter.innerText = Math.min(currentCount + increment, target);
-                    counter.classList.add('counting');
-                    setTimeout(updateCount, 1);
-                } else {
-                    counter.classList.remove('counting');
-                }
-            };
-            
-            updateCount();
-        });
-    }
-    
-    // 页面加载
-    document.addEventListener('DOMContentLoaded', function() {
-        showNotification();
+        function closeNotification() {
+            const notification = document.getElementById('notification');
+            notification.classList.remove('active');
+        }
         
         // 数字计数动画
-        setTimeout(animateCounters, 100);
-    });
-
-    // 检测设备类型并跳转
-    window.addEventListener('load', function() {
-        if (window.innerWidth < 768) {
-            window.location.href = 'https://www.xuzhoulab.cn/m';
+        function animateCounters() {
+            const counters = document.querySelectorAll('.data-number');
+            const speed = 1000; // 动画速度，数值越小越快
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const count = parseInt(counter.innerText);
+                const increment = Math.ceil(target / speed);
+                
+                const updateCount = () => {
+                    const currentCount = parseInt(counter.innerText);
+                    
+                    if(currentCount < target) {
+                        counter.innerText = Math.min(currentCount + increment, target);
+                        counter.classList.add('counting');
+                        setTimeout(updateCount, 1);
+                    } else {
+                        counter.classList.remove('counting');
+                    }
+                };
+                
+                updateCount();
+            });
         }
-    });
-</script>
-
+        
+        // 页面加载
+        document.addEventListener('DOMContentLoaded', function() {
+            showNotification();
+            
+            // 数字计数动画
+            setTimeout(animateCounters, 100);
+        });
+    </script>
 </body>
 </html>
-<!--
--->
