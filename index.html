@@ -618,14 +618,28 @@
 <body>
 
 
-    <!-- 在 index.html <body> 顶部插入： -->
+
+<!-- 在 index.html <body> 顶部插入： -->
 <div id="langModal" class="modal-overlay">
   <div class="modal-box">
     <p class="modal-title">Pick the language you're good at</p>
     <div class="modal-btns">
-      <a class="lang-btn" data-lang="en">English</a>
+      <a class="lang-btn" data-lang="en" id="enBtn">English</a>
       <a class="lang-btn" data-lang="zh" href="https://cn.xuzhoulab.cn">简体中文</a>
       <a class="lang-btn" data-lang="jp" href="https://jp.xuzhoulab.cn">日本語</a>
+    </div>
+  </div>
+</div>
+
+<!-- 英文 Cookie 确认弹窗（初始隐藏） -->
+<div id="cookieConsent" class="modal-overlay" style="display:none">
+  <div class="modal-box">
+    <p class="modal-title">
+      This site would like to store a cookie so the language selector won’t show again for 24&nbsp;hours. Allow?
+    </p>
+    <div class="modal-btns">
+      <button class="lang-btn" id="allowCookie">Allow</button>
+      <button class="lang-btn" id="denyCookie">Don’t allow</button>
     </div>
   </div>
 </div>
@@ -657,7 +671,7 @@
 .lang-btn{
   padding:8px 20px; border:1px solid var(--primary-color);
   border-radius:20px; color:var(--primary-color);
-  text-decoration:none; cursor:pointer;
+  text-decoration:none; cursor:pointer; background:transparent;
   transition:all .3s;
 }
 .lang-btn:hover{
@@ -668,23 +682,34 @@
 <script>
 (function(){
   const key = 'xuZhouLangSelected';
-  // 24 小时内已选择过则不再弹出
+
+  /* 若 24 小时内已选过 English 且同意 Cookie，不再弹出 */
   if(localStorage.getItem(key)) return;
 
-  const modal = document.getElementById('langModal');
-  modal.classList.add('show');
+  const langModal  = document.getElementById('langModal');
+  const cookieModal= document.getElementById('cookieConsent');
 
-  // 点击 English 仅关闭弹窗并记录
-  document.querySelector('.lang-btn[data-lang="en"]').addEventListener('click', () => {
-    localStorage.setItem(key, Date.now());
-    modal.classList.remove('show');
+  langModal.classList.add('show');
+
+  /* 点击 简体中文 / 日本語：直接跳转，不记录任何东西 */
+  /* 点击 English：弹出 Cookie 确认 */
+  document.getElementById('enBtn').addEventListener('click', e => {
+    e.preventDefault();
+    langModal.classList.remove('show');
+    cookieModal.classList.add('show');
   });
 
-  // 点击 简体中文 / 日本語 由链接自动跳转，同样记录
-  document.querySelectorAll('.lang-btn[data-lang="zh"], .lang-btn[data-lang="jp"]')
-    .forEach(btn => btn.addEventListener('click', () => {
-      localStorage.setItem(key, Date.now());
-    }));
+  /* Cookie 确认：Allow → 记录 24 小时；Deny → 什么都不存 */
+  document.getElementById('allowCookie').addEventListener('click', () => {
+    localStorage.setItem(key, Date.now());
+    closeModals();
+  });
+  document.getElementById('denyCookie').addEventListener('click', closeModals);
+
+  function closeModals(){
+    cookieModal.classList.remove('show');
+    langModal.classList.remove('show');
+  }
 })();
 </script>
 
