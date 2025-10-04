@@ -619,100 +619,93 @@
 
 
 
-<!-- 在 index.html <body> 顶部插入： -->
+<!-- ========= 语言选择弹窗 ========= -->
 <div id="langModal" class="modal-overlay">
   <div class="modal-box">
     <p class="modal-title">Pick the language you're good at</p>
     <div class="modal-btns">
-      <a class="lang-btn" data-lang="en" id="enBtn">English</a>
-      <a class="lang-btn" data-lang="zh" href="https://cn.xuzhoulab.cn">简体中文</a>
-      <a class="lang-btn" data-lang="jp" href="https://jp.xuzhoulab.cn">日本語</a>
+      <button class="lang-btn" id="btnEn">English</button>
+      <a class="lang-btn" href="https://cn.xuzhoulab.cn">简体中文</a>
+      <a class="lang-btn" href="https://jp.xuzhoulab.cn">日本語</a>
     </div>
   </div>
 </div>
 
-<!-- 英文 Cookie 确认弹窗（初始隐藏） -->
-<div id="cookieConsent" class="modal-overlay" style="display:none">
+<!-- ========= English 后的 Cookie 同意弹窗 ========= -->
+<div id="cookieModal" class="modal-overlay">
   <div class="modal-box">
     <p class="modal-title">
       This site would like to store a cookie so the language selector won’t show again for 24&nbsp;hours. Allow?
     </p>
     <div class="modal-btns">
-      <button class="lang-btn" id="allowCookie">Allow</button>
-      <button class="lang-btn" id="denyCookie">Don’t allow</button>
+      <button class="lang-btn" id="allowBtn">Allow</button>
+      <button class="lang-btn" id="denyBtn">Don’t allow</button>
     </div>
   </div>
 </div>
 
 <style>
-/* 弹窗样式 */
+/* ----- 通用弹窗样式 ----- */
 .modal-overlay{
   position:fixed; inset:0;
-  background:rgba(0,0,0,.7);
+  background:rgba(0,0,0,.75);
   display:flex; align-items:center; justify-content:center;
-  z-index:9999;
-  opacity:0; pointer-events:none;
-  transition:opacity .3s;
+  z-index:10000; opacity:0; pointer-events:none;
+  transition:opacity .3s ease;
 }
-.modal-overlay.show{
-  opacity:1; pointer-events:auto;
-}
+.modal-overlay.show{opacity:1; pointer-events:auto;}
 .modal-box{
-  background:#0a0a1e; border:1px solid var(--primary-color);
-  border-radius:8px; padding:30px 40px;
-  text-align:center; box-shadow:0 0 20px rgba(0,240,255,.3);
+  background:#0a0a1e; border:1px solid #00f0ff;
+  border-radius:8px; padding:32px 40px; max-width:90vw;
+  text-align:center; box-shadow:0 0 20px rgba(0,240,255,.35);
 }
-.modal-title{
-  margin:0 0 20px; font-size:1.2rem; color:#fff;
-}
-.modal-btns{
-  display:flex; gap:15px; justify-content:center;
-}
+.modal-title{margin:0 0 20px; font-size:1.25rem; color:#fff;}
+.modal-btns{display:flex; gap:15px; justify-content:center; margin-top:10px;}
 .lang-btn{
-  padding:8px 20px; border:1px solid var(--primary-color);
-  border-radius:20px; color:var(--primary-color);
-  text-decoration:none; cursor:pointer; background:transparent;
-  transition:all .3s;
+  padding:8px 24px; border:1px solid #00f0ff; border-radius:20px;
+  background:transparent; color:#00f0ff; font-size:1rem; cursor:pointer;
+  transition:all .3s ease; text-decoration:none;
 }
-.lang-btn:hover{
-  background:var(--primary-color); color:#000;
-}
+.lang-btn:hover{background:#00f0ff; color:#000;}
 </style>
 
 <script>
 (function(){
-  const key = 'xuZhouLangSelected';
+  const KEY = 'xuZhouLangSelected';
 
-  /* 若 24 小时内已选过 English 且同意 Cookie，不再弹出 */
-  if(localStorage.getItem(key)) return;
+  /* ---- 24h 过期检测 ---- */
+  function shouldSkip(){
+    const t = localStorage.getItem(KEY);
+    if(!t) return false;
+    return Date.now() - parseInt(t,10) < 24*60*60*1000;
+  }
+
+  if(shouldSkip()) return;          // 已同意且未过期，什么都不做
 
   const langModal  = document.getElementById('langModal');
-  const cookieModal= document.getElementById('cookieConsent');
+  const cookieModal= document.getElementById('cookieModal');
 
   langModal.classList.add('show');
 
-  /* 点击 简体中文 / 日本語：直接跳转，不记录任何东西 */
-  /* 点击 English：弹出 Cookie 确认 */
-  document.getElementById('enBtn').addEventListener('click', e => {
-    e.preventDefault();
+  /* English 按钮：弹出 Cookie 同意窗 */
+  document.getElementById('btnEn').addEventListener('click', () => {
     langModal.classList.remove('show');
     cookieModal.classList.add('show');
   });
 
-  /* Cookie 确认：Allow → 记录 24 小时；Deny → 什么都不存 */
-  document.getElementById('allowCookie').addEventListener('click', () => {
-    localStorage.setItem(key, Date.now());
-    closeModals();
+  /* Cookie 窗按钮 */
+  document.getElementById('allowBtn').addEventListener('click', () => {
+    localStorage.setItem(KEY, Date.now());
+    closeAll();
   });
-  document.getElementById('denyCookie').addEventListener('click', closeModals);
+  document.getElementById('denyBtn').addEventListener('click', closeAll);
 
-  function closeModals(){
+  function closeAll(){
     cookieModal.classList.remove('show');
     langModal.classList.remove('show');
   }
 })();
 </script>
-
 
 
 
