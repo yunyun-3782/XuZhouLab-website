@@ -616,6 +616,86 @@
     </style>
 </head>
 <body>
+
+
+    <!-- 在 index.html <body> 顶部插入： -->
+<div id="langModal" class="modal-overlay">
+  <div class="modal-box">
+    <p class="modal-title">Pick the language you're good at</p>
+    <div class="modal-btns">
+      <a class="lang-btn" data-lang="en">English</a>
+      <a class="lang-btn" data-lang="zh" href="https://cn.xuzhoulab.cn">简体中文</a>
+      <a class="lang-btn" data-lang="jp" href="https://jp.xuzhoulab.cn">日本語</a>
+    </div>
+  </div>
+</div>
+
+<style>
+/* 弹窗样式 */
+.modal-overlay{
+  position:fixed; inset:0;
+  background:rgba(0,0,0,.7);
+  display:flex; align-items:center; justify-content:center;
+  z-index:9999;
+  opacity:0; pointer-events:none;
+  transition:opacity .3s;
+}
+.modal-overlay.show{
+  opacity:1; pointer-events:auto;
+}
+.modal-box{
+  background:#0a0a1e; border:1px solid var(--primary-color);
+  border-radius:8px; padding:30px 40px;
+  text-align:center; box-shadow:0 0 20px rgba(0,240,255,.3);
+}
+.modal-title{
+  margin:0 0 20px; font-size:1.2rem; color:#fff;
+}
+.modal-btns{
+  display:flex; gap:15px; justify-content:center;
+}
+.lang-btn{
+  padding:8px 20px; border:1px solid var(--primary-color);
+  border-radius:20px; color:var(--primary-color);
+  text-decoration:none; cursor:pointer;
+  transition:all .3s;
+}
+.lang-btn:hover{
+  background:var(--primary-color); color:#000;
+}
+</style>
+
+<script>
+(function(){
+  const key = 'xuZhouLangSelected';
+  // 24 小时内已选择过则不再弹出
+  if(localStorage.getItem(key)) return;
+
+  const modal = document.getElementById('langModal');
+  modal.classList.add('show');
+
+  // 点击 English 仅关闭弹窗并记录
+  document.querySelector('.lang-btn[data-lang="en"]').addEventListener('click', () => {
+    localStorage.setItem(key, Date.now());
+    modal.classList.remove('show');
+  });
+
+  // 点击 简体中文 / 日本語 由链接自动跳转，同样记录
+  document.querySelectorAll('.lang-btn[data-lang="zh"], .lang-btn[data-lang="jp"]')
+    .forEach(btn => btn.addEventListener('click', () => {
+      localStorage.setItem(key, Date.now());
+    }));
+})();
+</script>
+
+
+
+
+
+
+
+
+    
     <!-- Notification system -->
     <div id="notification" class="cyber-notification">
         <span>Welcome to the official website of XuZhouLab!</span>
@@ -842,7 +922,7 @@
                 <h3 class="footer-title">Friendly Links</h3>
                 <ul class="footer-links">
                     <li><a href="https://saobby.com">Saobby's Homepage</a></li>
-                    <li><a href="https://rainyun.com/xzlab?s=website">🌧️ Rain Cloud</a></li>
+                    <li><a href="https://rainyun.com/xzlab?s=website">🌧️ Rainyun</a></li>
                     <li><a href="https://github.com/yunyun-3782/XuZhouLab-website">🐱 Github</a></li>
                 </ul>
             </div>
