@@ -616,6 +616,103 @@
     </style>
 </head>
 <body>
+
+
+
+<!-- ========= 语言选择弹窗 ========= -->
+<div id="langModal" class="modal-overlay">
+  <div class="modal-box">
+    <p class="modal-title">Choose your language</p>
+    <div class="modal-btns">
+      <button class="lang-btn" id="btnEn">English</button>
+      <a class="lang-btn" href="https://cn.xuzhoulab.cn">简体中文</a>
+    </div>
+  </div>
+</div>
+
+<!-- ========= English 后的 Cookie 同意弹窗 ========= -->
+<div id="cookieModal" class="modal-overlay">
+  <div class="modal-box">
+    <p class="modal-title">
+      This site would like to store a cookie so the language selector won’t show again for 24&nbsp;hours. Allow?
+    </p>
+    <div class="modal-btns">
+      <button class="lang-btn" id="allowBtn">Allow</button>
+      <button class="lang-btn" id="denyBtn">Don’t allow</button>
+    </div>
+  </div>
+</div>
+
+<style>
+/* ----- 通用弹窗样式 ----- */
+.modal-overlay{
+  position:fixed; inset:0;
+  background:rgba(0,0,0,.75);
+  display:flex; align-items:center; justify-content:center;
+  z-index:10000; opacity:0; pointer-events:none;
+  transition:opacity .3s ease;
+}
+.modal-overlay.show{opacity:1; pointer-events:auto;}
+.modal-box{
+  background:#0a0a1e; border:1px solid #00f0ff;
+  border-radius:8px; padding:32px 40px; max-width:90vw;
+  text-align:center; box-shadow:0 0 20px rgba(0,240,255,.35);
+}
+.modal-title{margin:0 0 20px; font-size:1.25rem; color:#fff;}
+.modal-btns{display:flex; gap:15px; justify-content:center; margin-top:10px;}
+.lang-btn{
+  padding:8px 24px; border:1px solid #00f0ff; border-radius:20px;
+  background:transparent; color:#00f0ff; font-size:1rem; cursor:pointer;
+  transition:all .3s ease; text-decoration:none;
+}
+.lang-btn:hover{background:#00f0ff; color:#000;}
+</style>
+
+<script>
+(function(){
+  const KEY = 'xuZhouLangSelected';
+
+  /* ---- 24h 过期检测 ---- */
+  function shouldSkip(){
+    const t = localStorage.getItem(KEY);
+    if(!t) return false;
+    return Date.now() - parseInt(t,10) < 24*60*60*1000;
+  }
+
+  if(shouldSkip()) return;          // 已同意且未过期，什么都不做
+
+  const langModal  = document.getElementById('langModal');
+  const cookieModal= document.getElementById('cookieModal');
+
+  langModal.classList.add('show');
+
+  /* English 按钮：弹出 Cookie 同意窗 */
+  document.getElementById('btnEn').addEventListener('click', () => {
+    langModal.classList.remove('show');
+    cookieModal.classList.add('show');
+  });
+
+  /* Cookie 窗按钮 */
+  document.getElementById('allowBtn').addEventListener('click', () => {
+    localStorage.setItem(KEY, Date.now());
+    closeAll();
+  });
+  document.getElementById('denyBtn').addEventListener('click', closeAll);
+
+  function closeAll(){
+    cookieModal.classList.remove('show');
+    langModal.classList.remove('show');
+  }
+})();
+</script>
+
+
+
+
+
+
+
+    
     <!-- Notification system -->
     <div id="notification" class="cyber-notification">
         <span>Welcome to the official website of XuZhouLab!</span>
@@ -842,7 +939,7 @@
                 <h3 class="footer-title">Friendly Links</h3>
                 <ul class="footer-links">
                     <li><a href="https://saobby.com">Saobby's Homepage</a></li>
-                    <li><a href="https://rainyun.com/xzlab?s=website">🌧️ Rain Cloud</a></li>
+                    <li><a href="https://rainyun.com/xzlab?s=website">🌧️ Rainyun</a></li>
                     <li><a href="https://github.com/yunyun-3782/XuZhouLab-website">🐱 Github</a></li>
                 </ul>
             </div>
