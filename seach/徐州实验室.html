@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Search Guide(搜索指引):徐州实验室</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#165DFF',
+          },
+        },
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+  <div class="container mx-auto px-4 py-12 max-w-3xl">
+    <!-- 标题区域 -->
+    <div class="mb-8 text-center">
+      <h1 class="text-[clamp(1.5rem,3vw,2rem)] font-bold text-gray-800">标题</h1>
+      <!-- 已删除“以下是相关链接及说明”这句话 -->
+    </div>
+    
+    <!-- 错别字提示（黄色框样式） -->
+    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+      <p class="text-yellow-800 text-sm">
+        <i class="fa fa-info-circle mr-1"></i> 提示：您可能搜索的"徐州实验室"为常见错别字，正确链接如下
+      </p>
+    </div>
+    
+    <!-- 蓝色框（与黄色框相同样式，不居中） -->
+    <div class="bg-primary/5 border border-primary/20 rounded-lg p-4 mb-6">
+      <p class="text-primary font-semibold text-sm">
+        <i class="fa fa-building mr-1"></i> 在输入法中输入"XuZhouShiYanShi"可能会出现的“徐州实验室”，于是我们创建了此搜索指引。
+      </p>
+    </div>
+    
+    <!-- 核心表格区域 -->
+    <div class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
+      <table class="w-full">
+        <!-- 表头 -->
+        <thead class="bg-gray-50 border-b border-gray-200">
+          <tr>
+            <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700">说明</th>
+            <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700">链接</th>
+          </tr>
+        </thead>
+        
+        <!-- 表格内容 -->
+        <tbody class="divide-y divide-gray-100">
+          <!-- 第一行 -->
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="px-6 py-4 text-gray-600 border border-primary/20 bg-primary/5 rounded-md">
+              Correct page link (正确页面链接)
+            </td>
+            <td class="px-6 py-4">
+              <a href="https://example.com/xuzhou-lab" 
+                 class="text-primary hover:text-primary/80 font-medium break-all"
+                 target="_blank">
+                https://xuzhoulab.cn/
+              </a>
+            </td>
+          </tr>
+          
+          <!-- 第二行 -->
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="px-6 py-4 text-gray-600 border border-primary/20 bg-primary/5 rounded-md">
+              Its official information release page (其官方信息发布的页面)
+            </td>
+            <td class="px-6 py-4">
+              <a href="https://example.com/research-results" 
+                 class="text-primary hover:text-primary/80 font-medium break-all"
+                 target="_blank">
+                https://pt.xuzhoulab.cn/
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
